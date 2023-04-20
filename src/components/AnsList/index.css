@@ -1,0 +1,73 @@
+.ans-btn {
+  background: transparent;
+  border: none;
+  outline: none !important;
+}
+.ans {
+  color: var(--main-color);
+}
+
+.ans-box {
+  border: 1px solid var(--main-color);
+}
+.d-inline {
+  text-decoration: underline;
+}
+.wid {
+  width: 70px;
+}
+.pos {
+  position: relative;
+  top: 5px;
+  left: 10px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+  outline: none !important;
+}
+
+.pos:hover {
+  background: white;
+  opacity: 0.2;
+  color: black !important;
+}
+.pos:hover .fa-solid {
+  color: rgb(0, 0, 0) !important;
+}
+label {
+  cursor: pointer;
+}
+.d-inline {
+  text-decoration: none;
+}
+.tooltips {
+  background-color: transparent;
+  border: none;
+}
+button {
+  outline: none !important;
+}
+ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+.qus-list:hover > .ans-remove {
+  display: inline;
+  transform: scale(2);
+}
+.ans-remove:hover {
+  display: inline;
+}
+.ans-remove {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  top: 1;
+  left: 22px;
+  transition: all 0.3s ease-in;
+}
+.label-text {
+  text-decoration: line-through;
+}

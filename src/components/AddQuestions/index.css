@@ -1,0 +1,105 @@
+::-webkit-scrollbar {
+  width: 6px;
+  height: 20%;
+}
+.question-form::-webkit-scrollbar {
+  width: 6px;
+  height: var(200px, 20px);
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+  background-clip: content-box;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #125398a1;
+  border-radius: 10px;
+  height: 50px;
+}
+.question-form::-webkit-scrollbar-thumb {
+  background: #125398a1;
+  border-radius: 100px;
+  height: 500px;
+  background-clip: content-box;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 1px 2px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--main-color);
+}
+.question-form::-webkit-scrollbar-thumb {
+  background: #125398a1;
+  border-radius: 10px;
+  height: 50px;
+  background-clip: content-box;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 1px 2px;
+}
+/* body { --scrollbar-height:150px; } body::-webkit-scrollbar { width: var(--scrollbar-width, 20px); height: var(--scrollbar-height, 20px); }body::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb-color, #3B82F6); border: var(--scrollbar-border-thickness, 3px) solid var(--scrollbar-border-color, rgb(255, 255, 255)); border-radius: var(--scrollbar-border-radius, 4px); }body::-webkit-scrollbar-track { background: var(--scrollbar-track-color, #A1A1AA); }body::-webkit-scrollbar-button { background: var(--scrollbar-button-color, #3F3F46); border: var(--scrollbar-border-thickness, 3px) solid var(--scrollbar-border-color, rgb(255, 255, 255)); border-radius: var(--scrollbar-border-radius, 4px); }body::-webkit-scrollbar-corner { background: var(--scrollbar-corner-color, #FFFFFF); border: var(--scrollbar-border-thickness, 3px) solid var(--scrollbar-border-color, rgb(255, 255, 255)); border-radius: var(--scrollbar-border-radius, 4px); }body::-webkit-scrollbar-button:vertical:start:increment, #preview::-webkit-scrollbar-button:vertical:end:decrement, #preview::-webkit-scrollbar-button:horizontal:start:increment, #preview::-webkit-scrollbar-button:horizontal:end:decrement { display: var(--show-double-buttons, none); } */
+.question-form {
+  border: 1px solid var(--main-color);
+  border-radius: 20px;
+  opacity: 0;
+  height: 0;
+  overflow-x: auto;
+  /* -webkit-transition: opacity 2s ease-in; */
+  transition: opacity 2s ease-in-out, height 0.5s ease-in;
+}
+.opening {
+  opacity: 1;
+  min-height: 140px;
+}
+@media all and (max-width: 900px) {
+  .opening {
+    opacity: 1;
+    min-height: 140px;
+  }
+}
+.question-input {
+  border: none;
+  background: transparent;
+  border-bottom: 2px solid var(--main-color);
+}
+.question-input::after {
+  content: "?";
+}
+.add-button {
+  position: relative;
+  top: 0;
+  left: 45%;
+  right: 45%;
+  align-self: center;
+  margin: 10px;
+  margin-bottom: 0;
+}
+.small {
+  position: relative;
+  top: 0;
+  left: 45%;
+  right: 45%;
+  align-self: center;
+}
+.p-chips {
+  background-color: #ffffff94 !important;
+  outline: none !important;
+  width: 200px !important;
+}
+.p-chips-token {
+  height: 10px !important;
+  font-size: 12px !important;
+}
+/* .p-chips-input-token {
+  overflow: hidden;
+}  */
+.p-chips .p-chips-multiple-container:not(.p-disabled):hover {
+  border-color: none;
+}
+.chip {
+  cursor: not-allowed !important;
+}

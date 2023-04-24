@@ -23,6 +23,7 @@ import "primereact/resources/primereact.min.css";
 
 //icons
 import "primeicons/primeicons.css";
+import AddSubCategory from "./AddSubCategory";
 
 const CategoryList = (props) => {
   const [toggler, clickTogle] = useState({
@@ -69,10 +70,6 @@ const CategoryList = (props) => {
 
   const addThisQuest = (quest) => {
     clickTogle({ ...toggler, ans: !toggler.ans });
-  };
-
-  const addSubCategory = () => {
-    console.log("add");
   };
 
   const storage = JSON.parse(localStorage.getItem("addQuest"));
@@ -201,13 +198,7 @@ const CategoryList = (props) => {
                 </h6> */}
                 <div className="arround">
                   <h6 className="pre-class font-weight-bold">Sub Categories</h6>
-                  <button
-                    type="button"
-                    className="add-cate rounded-pill"
-                    onClick={addSubCategory}
-                  >
-                    Add
-                  </button>
+
                   <button
                     className="close-open mr-5"
                     type="button"
@@ -225,11 +216,17 @@ const CategoryList = (props) => {
                   </button>
                 </div>
                 {toggler.subCat && (
-                  <ul className="ans-list">
-                    {subCategories.map((each) => (
-                      <CategoryCont key={v4()} categoryDetail={each} />
-                    ))}
-                  </ul>
+                  <>
+                    <div className="w-100 text-center">
+                      {" "}
+                      <AddSubCategory />
+                    </div>
+                    <ul className="ans-list">
+                      {subCategories.map((each) => (
+                        <CategoryCont key={v4()} categoryDetail={each} />
+                      ))}
+                    </ul>
+                  </>
                 )}
               </>
             )}

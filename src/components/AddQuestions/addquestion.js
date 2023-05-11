@@ -107,7 +107,7 @@ const AddQuestion = (props) => {
     let collectForLoaclStorage = [];
 
     collectForLoaclStorage.push(qesDetails);
-    console.log(collectForLoaclStorage, "kumaran");
+
     localStorage.setItem(
       "addQuest",
       addingQuestionFromLoacalstorage(qesDetails)

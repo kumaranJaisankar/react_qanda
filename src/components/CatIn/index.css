@@ -144,3 +144,113 @@
 .input:checked + .slider:before {
   transform: translateX(30px);
 }
+
+.open-button {
+  background-color: var(--main-color);
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 100px;
+  border-radius: 50px 50px 0 50px;
+  z-index: 1000;
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* The popup chat - hidden by default */
+.form-popup {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width textarea */
+.form-container textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+  resize: none;
+  min-height: 200px;
+}
+
+/* When the textarea gets focus, do something */
+.form-container textarea:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #04aa6d;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover,
+.open-button:hover {
+  opacity: 1;
+}
+
+#myForm {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  position: fixed;
+  right: 28px;
+  bottom: 23px;
+  width: 30%;
+  height: 80% !important;
+
+  background-color: #ebffff;
+  border-radius: 10px;
+  z-index: 1003;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.gradio-container {
+  overflow-y: scroll;
+}
+.x-btn {
+  text-align: right;
+}
+#component-8 {
+  display: none;
+}
+#component-1 {
+  padding: 0 !important;
+}
+
+.svelte-1kyws56 {
+  padding: 2px !important;
+  border: none !important;
+  background-color: #ebffff !important;
+}

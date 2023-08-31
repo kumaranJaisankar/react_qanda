@@ -3,24 +3,71 @@ import { useState } from "react";
 import { v4 } from "uuid";
 import { Button } from "primereact/button";
 import { Chips } from "primereact/chips";
-const questionDetailsAdd = {
-  id: v4(),
-  questionTypeList: [
-    "TEXT",
-    "DROPDOWN",
-    "RADIO",
-    "MULTICHECK",
-    "INTEGER",
-    "NUMBER",
-  ],
-  isRequired: null,
-  questionType: "TEXT",
-  defaultAnswer: null,
-  answer: {
-    textAnswer: null,
-    intAnswer: null,
-    floatAnswer: null,
-    selectedChoices: [
+
+const questionTypes = [
+  "TEXT",
+  "DROPDOWN",
+  "RADIO",
+  "MULTICHECK",
+  "INTEGER",
+  "NUMBER",
+];
+const addingQuestionFromLoacalstorage = (quesDetails) => {
+  const localStore = JSON.parse(localStorage.getItem("addQuest"));
+  if (localStore === null) {
+    return JSON.stringify([quesDetails]);
+  } else {
+    return JSON.stringify([...localStore, quesDetails]);
+  }
+};
+
+const AddQuestion = (props) => {
+  const questionDetailsAdd = {
+    id: v4(),
+    questionTypeList: [
+      "TEXT",
+      "DROPDOWN",
+      "RADIO",
+      "MULTICHECK",
+      "INTEGER",
+      "NUMBER",
+    ],
+    isRequired: null,
+    questionType: "TEXT",
+    defaultAnswer: null,
+    answer: {
+      textAnswer: null,
+      intAnswer: null,
+      floatAnswer: null,
+      selectedChoices: [
+        {
+          id: v4(),
+          choiceTypeList: ["TEXT", "RADIO", "CHECK", "INTEGER", "NUMBER"],
+          name: "Mathematics",
+          displayValue: "Mathematics",
+          choiceType: "CHECK",
+          score: 10.0,
+        },
+        {
+          id: v4(),
+          choiceTypeList: ["TEXT", "RADIO", "CHECK", "INTEGER", "NUMBER"],
+          name: "Science",
+          displayValue: "Science",
+          choiceType: "CHECK",
+          score: 10.0,
+        },
+        {
+          id: v4(),
+          choiceTypeList: ["TEXT", "RADIO", "CHECK", "INTEGER", "NUMBER"],
+          name: "History",
+          displayValue: "History",
+          choiceType: "CHECK",
+          score: 10.0,
+        },
+      ],
+      evalScore: null,
+    },
+    choices: [
       {
         id: v4(),
         choiceTypeList: ["TEXT", "RADIO", "CHECK", "INTEGER", "NUMBER"],
@@ -46,55 +93,8 @@ const questionDetailsAdd = {
         score: 10.0,
       },
     ],
-    evalScore: null,
-  },
-  choices: [
-    {
-      id: v4(),
-      choiceTypeList: ["TEXT", "RADIO", "CHECK", "INTEGER", "NUMBER"],
-      name: "Mathematics",
-      displayValue: "Mathematics",
-      choiceType: "CHECK",
-      score: 10.0,
-    },
-    {
-      id: v4(),
-      choiceTypeList: ["TEXT", "RADIO", "CHECK", "INTEGER", "NUMBER"],
-      name: "Science",
-      displayValue: "Science",
-      choiceType: "CHECK",
-      score: 10.0,
-    },
-    {
-      id: v4(),
-      choiceTypeList: ["TEXT", "RADIO", "CHECK", "INTEGER", "NUMBER"],
-      name: "History",
-      displayValue: "History",
-      choiceType: "CHECK",
-      score: 10.0,
-    },
-  ],
-  questionText: "Pick your interest Topics",
-};
-
-const questionTypes = [
-  "TEXT",
-  "DROPDOWN",
-  "RADIO",
-  "MULTICHECK",
-  "INTEGER",
-  "NUMBER",
-];
-const addingQuestionFromLoacalstorage = (quesDetails) => {
-  const localStore = JSON.parse(localStorage.getItem("addQuest"));
-  if (localStore === null) {
-    return JSON.stringify([quesDetails]);
-  } else {
-    return JSON.stringify([...localStore, quesDetails]);
-  }
-};
-
-const AddQuestion = (props) => {
+    questionText: "Pick your interest Topics",
+  };
   const { addThisQuest, currentId } = props;
   console.log(currentId);
   const [typ, setTyp] = useState("TEXT");
@@ -103,6 +103,7 @@ const AddQuestion = (props) => {
   const [qesDetails, setQues] = useState({ ...questionDetailsAdd, currentId });
 
   const submitQuestion = (event) => {
+    console.log(qesDetails);
     event.preventDefault();
     let collectForLoaclStorage = [];
 

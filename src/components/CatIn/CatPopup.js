@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   Modal,
@@ -13,19 +13,34 @@ import {
   FormControl,
   Input,
   FormLabel,
+  Checkbox,
+  CheckboxGroup,
+  Stack,
+  useToast,
 } from "@chakra-ui/react";
 const CatPopup = (props) => {
+  const [subcategorysWith, setSetSubCategories] = useState({
+    hasQuestions: true,
+    hasSubCategories: false,
+  });
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const tost = useToast();
   const initialRef = React.useRef(null);
   const { addCategory } = props;
   const addCat = () => {
-    addCategory(initialRef.current.value);
+    const firstName = initialRef.current.value;
+    addCategory(firstName, subcategorysWith);
+    tost({
+      title: `Added ${firstName}`,
+      status: "success",
+      position: "top",
+      isClosable: true,
+    });
     onClose();
   };
   return (
     <>
-      <Button onClick={onOpen} colorScheme="blue">
+      <Button size="sm" onClick={onOpen} colorScheme="blue">
         Add Category
       </Button>
 
@@ -36,8 +51,32 @@ const CatPopup = (props) => {
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl>
-              <FormLabel>Category name</FormLabel>
+              <FormLabel className="mb-0">Category name</FormLabel>
               <Input ref={initialRef} placeholder="Type Category name..." />
+              <h6 className="mt-3">Category with</h6>
+              <Stack spacing={3} direction="column">
+                <Checkbox
+                  defaultChecked
+                  onChange={(e) =>
+                    setSetSubCategories({
+                      ...subcategorysWith,
+                      hasQuestions: e.target.checked,
+                    })
+                  }
+                >
+                  Questions
+                </Checkbox>
+                <Checkbox
+                  onChange={(e) =>
+                    setSetSubCategories({
+                      ...subcategorysWith,
+                      hasSubCategories: e.target.checked,
+                    })
+                  }
+                >
+                  Sub Categories
+                </Checkbox>
+              </Stack>
             </FormControl>
           </ModalBody>
 

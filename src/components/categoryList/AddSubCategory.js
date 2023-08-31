@@ -18,6 +18,7 @@ import {
   ButtonGroup,
   Button,
   PopoverAnchor,
+  useToast,
 } from "@chakra-ui/react";
 import FocusLock from "react-focus-lock";
 import "./index.css";
@@ -29,18 +30,29 @@ const Form = ({
   onCancel,
   setSetSubCategories,
   subcategorysWith,
+  clickingAdd,
 }) => {
+  const tost = useToast();
   console.log(subcategorysWith);
   return (
     <Stack spacing={4}>
       <h6>Sub Category with</h6>
       <Stack spacing={5} direction="column">
+        <FormControl>
+          <FormLabel>Sub Name</FormLabel>
+          <Input
+            placeholder="category name..."
+            onChange={(e) =>
+              setSetSubCategories({ ...subcategorysWith, name: e.target.value })
+            }
+          />
+        </FormControl>
         <Checkbox
           defaultChecked
           onChange={() =>
             setSetSubCategories({
               ...subcategorysWith,
-              questions: !subcategorysWith.questions,
+              hasQuestions: !subcategorysWith.hasQuestions,
             })
           }
         >
@@ -50,7 +62,7 @@ const Form = ({
           onChange={() =>
             setSetSubCategories({
               ...subcategorysWith,
-              subCategories: !subcategorysWith.subCategories,
+              hasSubCategories: !subcategorysWith.hasSubCategories,
             })
           }
         >
@@ -61,7 +73,21 @@ const Form = ({
         <Button variant="outline" onClick={onCancel}>
           Cancel
         </Button>
-        <Button colorScheme="teal">ADD</Button>
+        <Button
+          colorScheme="blue"
+          onClick={() => {
+            tost({
+              title: "Added sub category",
+              status: "success",
+              position: "bottom",
+              isClosable: true,
+            });
+            clickingAdd();
+            onCancel();
+          }}
+        >
+          ADD
+        </Button>
       </ButtonGroup>
     </Stack>
   );
@@ -69,15 +95,19 @@ const Form = ({
 
 // 3. Create the Popover
 // Ensure you set `closeOnBlur` prop to false so it doesn't close on outside click
-const AddSubCategory = () => {
+const AddSubCategory = (props) => {
+  const { onAddSubCategory } = props;
   const [subcategorysWith, setSetSubCategories] = useState({
-    questions: true,
-    subCategories: false,
+    hasQuestions: true,
+    hasSubCategories: false,
+    name: "sub With Question",
   });
 
   const { onOpen, onClose, isOpen } = useDisclosure();
   const firstFieldRef = React.useRef(null);
-
+  const clickingAdd = () => {
+    onAddSubCategory(subcategorysWith);
+  };
   return (
     <>
       <Popover
@@ -102,6 +132,7 @@ const AddSubCategory = () => {
               firstFieldRef={firstFieldRef}
               onCancel={onClose}
               setSetSubCategories={setSetSubCategories}
+              clickingAdd={clickingAdd}
               subcategorysWith={subcategorysWith}
             />
           </FocusLock>
